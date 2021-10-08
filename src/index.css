@@ -38,7 +38,7 @@ code {
 ._loginRegister {
   background-color: #ffffff;
   padding: 20px;
-  max-width: 400px;
+  max-width: 100vw;
   margin: 0 auto;
   border-radius: 3px;
   box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset,
@@ -155,4 +155,20 @@ code {
   border-color: #ff304f;
   color: #ff304f;
   background: #ffffff;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }

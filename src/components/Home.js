@@ -4,6 +4,7 @@ import { MyContext } from "../contexts/MyContext";
 // Importing the Login & Register Componet
 import Login from "./Login";
 import Register from "./Register";
+import Admin from "./Admin";
 
 function Home() {
   const { rootState, logoutUser, changePassword } = useContext(MyContext);
@@ -31,12 +32,13 @@ function Home() {
     });
   };
 
+  console.log(theUser?.email);
   // On Submit Login From
   const submitForm = async (event) => {
     event.preventDefault();
     const data = await changePassword(state.user);
     if (data.success) {
-      console.log(data);
+      // console.log(data);
       setState({
         ...initialState,
       });
@@ -63,14 +65,16 @@ function Home() {
           <h3> Email: {theUser.email}</h3>
         </div>
         <button onClick={logoutUser}>Logout</button>
-        <button
-          onClick={() => {
-            chngPas();
-          }}
-        >
-          Change Password
-        </button>
-        {togglePas ? (
+        {theUser?.email != "admin@localhost.local" ? (
+          <button
+            onClick={() => {
+              chngPas();
+            }}
+          >
+            Change Password
+          </button>
+        ) : null}
+        {togglePas && theUser?.email != "admin@localhost.local" ? (
           <form style={{ marginTop: "10px" }} onSubmit={submitForm} noValidate>
             <div className="form-control">
               <label>PassWord: </label>
@@ -88,6 +92,7 @@ function Home() {
             </div>
           </form>
         ) : null}
+        {theUser?.email == "admin@localhost.local" ? <Admin /> : null}
       </div>
     );
   }

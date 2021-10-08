@@ -37,6 +37,11 @@ class MyContextProvider extends Component {
       isAuth: false,
     });
   };
+  userList = async () => {
+    const list = await Axios.get("user-list.php");
+    console.log(list);
+    return list;
+  };
 
   changePassword = async (user) => {
     console.log(user);
@@ -104,6 +109,7 @@ class MyContextProvider extends Component {
       loginUser: this.loginUser,
       logoutUser: this.logoutUser,
       changePassword: this.changePassword,
+      userList: this.userList,
     };
     return (
       <MyContext.Provider value={contextValue}>
